@@ -31,5 +31,6 @@ text_clf = Pipeline([('vect', CountVectorizer(stop_words=stopWords)), ('tfidf', 
 text_clf = text_clf.fit(x_train, y_train)
 
 predicted = text_clf.predict(x_test)
-print(predicted[0:10])
-
+with open('result.txt', 'w+', encoding='utf-8') as file:
+    for pred in predicted:
+        file.write(pred + '\n')
