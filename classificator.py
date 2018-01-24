@@ -14,7 +14,8 @@ with open('data.pickle', 'rb') as handle:
     data = pickle.load(handle)
 x_train=data[0]
 y_train=data[1]
-X_train_tfidf=data[2]
+
+
 with open('test.pickle', 'rb') as handle:
     test = pickle.load(handle)
 
@@ -22,7 +23,6 @@ x_test=test
 
 
 
-clf = MultinomialNB().fit(X_train_tfidf, y_train)
 
 stopWords = stopwords.words('russian')
 
@@ -31,6 +31,6 @@ text_clf = Pipeline([('vect', CountVectorizer(stop_words=stopWords)), ('tfidf', 
 text_clf = text_clf.fit(x_train, y_train)
 
 predicted = text_clf.predict(x_test)
-with open('result.txt', 'w+', encoding='utf-8') as file:
+with open('result1.txt', 'w+', encoding='utf-8') as file:
     for pred in predicted:
         file.write(pred + '\n')
